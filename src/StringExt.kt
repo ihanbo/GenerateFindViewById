@@ -133,9 +133,9 @@ fun String.createFragmentOnCreateMethod(): String = "@Override public void onCre
  */
 fun String?.createFieldByElement(element: Element, mIsLayoutInflater: Boolean, mLayoutInflaterText: String, mLayoutInflaterType: Int): String {
     val fromText = StringBuilder()
-    this?.let {
-        fromText.append("/** $it */\n")
-    }
+//    this?.let {
+//        fromText.append("/** $it */\n")
+//    }
     with(element) {
         fromText.append("private $name $fieldName")
     }

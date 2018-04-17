@@ -78,7 +78,7 @@ class GenerateCreator<T>(
                 if (mIsButterKnife) {
                     generateButterKnife()
                 } else {
-                    generateFindViewById()
+                    generateFindViewById2()
                 }
             }
         } catch (e: Exception) {
@@ -222,6 +222,21 @@ class GenerateCreator<T>(
         }
     }
 
+
+    private fun generateFindViewById2() {
+        generateFindViewByIdFields()
+
+        if (mProject isExtendsActivityOrActivityCompat mClass) {
+            generateFindViewByIdLayoutCode(null,  mClass.name+".this")
+            return
+        }
+        if (mProject isExtendsFragmentOrFragmentV4 mClass) {
+            generateFindViewByIdLayoutCode(null, "getActivity()")
+            return
+        }
+        generateFindViewByIdLayoutCode(null, "getContext()")
+    }
+
     /**
      * 创建变量
      */
@@ -289,7 +304,7 @@ class GenerateCreator<T>(
             val statements = initViewMethodBody!!.statements
             if (mIsLayoutInflater) {
                 // 添加LayoutInflater.from(this).inflate(R.layout.activity_main, null);
-                val layoutInflater = "$mLayoutInflaterText = LayoutInflater.from($context).inflate(R.layout.$mSelectedText, null);"
+                val layoutInflater = "$mLayoutInflaterText = LayoutInflater.from($context).inflate(R.layout.$mSelectedText, container,false);"
                 // 判断是否存在
                 var isExist = false
                 for (statement in statements) {

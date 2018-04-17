@@ -47,7 +47,7 @@ class FindViewByIdAction : AnAction() {
             mEditor.showPopupBalloon(Constant.Action.SELECTED_ERROR_NO_POINT, popupTime)
             return
         }
-        // 判断是否有onCreate方法
+        /*// 判断是否有onCreate方法
         if (project isExtendsActivityOrActivityCompat psiClass && psiClass.findMethodsByName(Constant.PSI_METHOD_BY_ONCREATE, false).isEmpty()) {
             // 写onCreate方法
             mSelectedText?.let {
@@ -63,7 +63,7 @@ class FindViewByIdAction : AnAction() {
                         it, Constant.CLASS_TYPE_BY_FRAGMENT, false).execute()
             }
             return
-        }
+        }*/
         // 获取布局文件，通过FilenameIndex.getFilesByName获取GlobalSearchScope.allScope(project)搜索整个项目
         val psiFiles = FilenameIndex.getFilesByName(project,
                 mSelectedText + Constant.SELECTED_TEXT_SUFFIX,
