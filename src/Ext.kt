@@ -119,10 +119,10 @@ fun createFieldsByInitViewMethod(findPre: String?, mIsLayoutInflater: Boolean,
                                  mSelectedText: String, mElements: ArrayList<Element>,
                                  mLayoutInflaterType: Int, mNeedCast: Boolean): String {
     val initView = StringBuilder()
-    initView.append(if (StringUtils.isEmpty(findPre)) "private void initView() {\n" else "private void initView(View $findPre) {\n")
+    initView.append(if (StringUtils.isEmpty(findPre)) "private void findViews() {\n" else "private void findViews(View $findPre) {\n")
     if (mIsLayoutInflater) {
         // 添加LayoutInflater.from(this).inflate(R.layout.activity_main, null);
-        val layoutInflater = "$mLayoutInflaterText = LayoutInflater.from($context).inflate(R.layout.$mSelectedText, null);\n"
+        val layoutInflater = "$mLayoutInflaterText = LayoutInflater.from($context).inflate(R.layout.$mSelectedText, container,false);\n"
         initView.append(layoutInflater)
     }
     mElements.filter(Element::isEnable).forEach {
