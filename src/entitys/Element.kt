@@ -53,7 +53,12 @@ class Element
                             if (i == 0) {
                                 sb.append("m")
                             }
-                            sb.append(names[i].firstToUpperCase())
+                            var filterMC: String? =names[i]
+                            if(filterMC!!.startsWith("mc_")){
+                                filterMC = filterMC.substring(3)
+                            }
+
+                            sb.append(filterMC.firstToUpperCase())
                         }
                         fieldName = sb.toString()
                     }

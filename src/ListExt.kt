@@ -25,6 +25,29 @@ fun ArrayList<Element>.createFindViewByIdOnClickMethodAndSwitch(): String {
 }
 
 /**
+ * FindViewById，创建OnClick方法和switch
+ *
+ * @param mOnClickList 可onclick的Element的集合
+ *
+ * @return String
+ */
+fun ArrayList<Element>.createFindViewByIdOnClickMethodAndIfElse(): String {
+    val onClick = StringBuilder()
+    onClick.append("@Override public void onClick(View v) {\n")
+    onClick.append("\t")
+    this.filter(Element::isClickable).forEach {
+
+        onClick.append("if(v== ${it.fieldName}) {\n\n")
+        onClick.append("\t}else ")
+    }
+    onClick.append("{\n}\n")
+
+    onClick.append("}\n")
+    return onClick.toString()
+}
+
+
+/**
  * ButterKnife，创建OnClick方法和switch
  *
  * @param mOnClickList 可onclick的Element的集合

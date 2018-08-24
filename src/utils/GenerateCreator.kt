@@ -13,6 +13,7 @@ import createButterKnifeViewMethod
 import createFieldByElement
 import createFieldText
 import createFieldsByInitViewMethod
+import createFindViewByIdOnClickMethodAndIfElse
 import createFindViewByIdOnClickMethodAndSwitch
 import createFindViewByIdViewHolder
 import createOnClickAnnotation
@@ -442,7 +443,7 @@ class GenerateCreator<T>(
             return
         }
         if (mOnClickList.size != 0) {
-            mClass.add(mFactory.createMethodFromText(mOnClickList.createFindViewByIdOnClickMethodAndSwitch(), mClass))
+            mClass.add(mFactory.createMethodFromText(mOnClickList.createFindViewByIdOnClickMethodAndIfElse(), mClass))
         }
     }
 
